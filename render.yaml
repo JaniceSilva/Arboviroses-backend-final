@@ -1,12 +1,7 @@
 services:
   - type: web
-    name: arboviroses-backend
+    name: arboviroses-backend-final # IMPORTANTE: Confirme que este nome é EXATAMENTE igual ao nome do seu serviço no Render
     env: python
-    plan: free # 
-    buildCommand: "pip install -r requirements.txt"
-        startCommand: "application.py" 
-
-      - key: PYTHON_VERSION
-        value: 3.11.9 # Ou outra versão compatível como 3.12.x
-
-  
+    pythonVersion: 3.12.4 # Esta linha é a CHAVE para definir a versão do Python para 3.12
+    buildCommand: "pip install -r requirements.txt" # Este é o comando de build CORRETO e ÚNICO
+    startCommand: "gunicorn app:app" # Ajuste este comando se o seu arquivo principal não for 'app.py' ou o objeto 'app'
