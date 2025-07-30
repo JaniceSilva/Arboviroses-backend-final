@@ -1,8 +1,12 @@
 services:
   - type: web
-    name: seu-servico-aqui
+    name: arboviroses-backend
     env: python
-    pythonVersion: 3.12.4 # <-- AQUI ALTERA
+    plan: free # 
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "application.py" 
+        startCommand: "application.py" 
+
+      - key: PYTHON_VERSION
+        value: 3.11.9 # Ou outra versão compatível como 3.12.x
+
   
