@@ -23,19 +23,6 @@ class ClimateCollector:
     def __init__(self):
         self.base_url = "https://api.open-meteo.com/v1/forecast"
         self.historical_url = "https://archive-api.open-meteo.com/v1/archive"
-
-        def fetch_data(self, url: str, params: dict) -> Optional[dict]:
-    try:
-        response = requests.get(url, params=params, timeout=30)
-        if response.status_code == 200:
-            return response.json()
-        else:
-            print(f"[ERRO] Requisição falhou: {response.status_code} - {response.text}")
-            return None
-    except requests.exceptions.RequestException as e:
-        print(f"[ERRO] Exceção ao acessar a API: {e}")
-        return None
-
         
         # Principais municípios brasileiros para coleta (código IBGE e coordenadas)
         self.municipalities = [
