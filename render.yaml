@@ -1,7 +1,7 @@
 services:
   - type: web
-    name: arboviroses-backend-final # Este nome é CRÍTICO!
+    name: arboviroses-backend-final # Mantenha este nome EXATO
     env: python
-    pythonVersion: 3.12.4 # Ou 3.12
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn app:app" # Verifique se está correto para o seu app
+    pythonVersion: 3.12.4 # Mantenha a versão do Python correta
+    buildCommand: "pip install -r requirements.txt" # Mantenha este comando de build
+    startCommand: "gunicorn src.main:app" # <--- MUDE PARA ESTE COMANDO
