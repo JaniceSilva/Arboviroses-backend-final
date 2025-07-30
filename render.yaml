@@ -4,4 +4,5 @@ services:
     env: python
     pythonVersion: 3.12.4 # <-- AQUI ALTERA
     buildCommand: "pip install -r requirements.txt"
+    startCommand: "application.py" 
   
