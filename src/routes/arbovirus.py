@@ -213,37 +213,6 @@ def get_arbovirus_summary():
             'error': str(e)
         }), 500
 
-@arbovirus_bp.route('/arbovirus/municipalities', methods=['GET'])
-def get_arbovirus_municipalities():
-    """
-    Obtém lista de municípios com dados de arboviroses
-    """
-    try:
-        municipalities = db.session.query(
-            ArbovirusData.municipality_code,
-            ArbovirusData.municipality_name,
-            ArbovirusData.state
-        ).distinct().all()
-        
-        result = [
-            {
-                'municipality_code': mun[0],
-                'municipality_name': mun[1],
-                'state': mun[2]
-            }
-            for mun in municipalities
-        ]
-        
-        return jsonify({
-            'success': True,
-            'data': result,
-            'count': len(result)
-        })
-    except Exception as e:
-        return jsonify({
-            'success': False,
-            'error': str(e)
-        }), 500
 @arbovirus_bp.route('/arbovirus/states', methods=['GET'])
 def get_available_states():
     try:
@@ -259,4 +228,5 @@ def get_available_states():
             'success': False,
             'error': str(e)
         }), 500
+
 
