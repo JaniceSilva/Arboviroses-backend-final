@@ -229,4 +229,26 @@ def get_available_states():
             'error': str(e)
         }), 500
 
+@arbovirus_bp.route('/api/cidades', methods=['GET'])
+def get_cidades():
+    try:
+        estado = request.args.get('estado')
+        query = db.session.query(ArbovirusData.city)
+
+        if estado:
+            query = query.filter(ArbovirusData.state == estado.upper())
+
+        cidades = query.distinct().all()
+        resultado = sorted([c[0] for c in cidades if c[0]])
+
+        return jsonify({
+            'success': True,
+            'data': resultado,
+            'count': len(resultado)
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
 
