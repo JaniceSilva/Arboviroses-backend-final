@@ -244,4 +244,19 @@ def get_arbovirus_municipalities():
             'success': False,
             'error': str(e)
         }), 500
+@arbovirus_bp.route('/arbovirus/states', methods=['GET'])
+def get_available_states():
+    try:
+        states = db.session.query(ArbovirusData.state).distinct().all()
+        result = sorted(list(set([state[0] for state in states])))
+        return jsonify({
+            'success': True,
+            'data': result,
+            'count': len(result)
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
 
