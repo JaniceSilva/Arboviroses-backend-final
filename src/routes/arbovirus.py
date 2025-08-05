@@ -270,3 +270,22 @@ def get_cidades():
             'error': str(e)
         }), 500
 
+from flask import request
+
+@arbovirus_bp.route('/arbovirus/states', methods=['GET'])
+def get_available_states():
+    try:
+        states = db.session.query(ArbovirusData.state).distinct().all()
+        result = sorted([s[0] for s in states if s[0]])  # filtra estados não nulos
+        return jsonify({
+            'success': True,
+            'data': result,
+            'count': len(result)
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
+
