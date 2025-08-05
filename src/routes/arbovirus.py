@@ -229,6 +229,24 @@ def get_available_states():
             'error': str(e)
         }), 500
 
+from flask import Blueprint, jsonify
+import sqlite3
+
+arbovirus_bp = Blueprint('arbovirus', __name__, url_prefix='/arbovirus')
+
+@arbovirus_bp.route('/states', methods=['GET'])
+def get_states():
+    try:
+        conn = sqlite3.connect('arbovirus.db')  # ajuste se o nome do seu banco for diferente
+        cursor = conn.cursor()
+        cursor.execute("SELECT DISTINCT estado FROM casos")  # ajuste para sua tabela real
+        estados = [row[0] for row in cursor.fetchall()]
+        conn.close()
+        return jsonify({"data": estados})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 @arbovirus_bp.route('/api/cidades', methods=['GET'])
 def get_cidades():
     try:
