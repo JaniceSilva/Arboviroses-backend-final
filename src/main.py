@@ -13,8 +13,7 @@ from src.routes.prediction import prediction_bp
 from src.routes.dashboard import dashboard_bp
 from src.routes.jobs import jobs_bp
 from src.routes.ml import ml_bp
-from arbovirus_routes import arbovirus_bp
-app.register_blueprint(arbovirus_bp)
+
 
 
 app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'static'))
